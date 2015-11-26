@@ -17,8 +17,10 @@ gulp.task("webpack", function(callback) {
     });
 });
 
-gulp.task("watch", function(callback) {
-    watch('static/**/*.ts*', ["webpack"]);
+gulp.task("watch", function() {
+    watch("static/ts/*.tsx", function() {
+        gulp.start("webpack");
+    });
 });
 
 gulp.task("server", shell.task([
