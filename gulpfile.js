@@ -18,7 +18,10 @@ gulp.task("webpack", function(callback) {
 });
 
 gulp.task("watch", function() {
-    watch("static/ts/*.tsx", function() {
+    watch("code/**/*.tsx", function() {
+        gulp.start("webpack");
+    });
+    watch("styles/**/*.less", function() {
         gulp.start("webpack");
     });
 });
@@ -29,9 +32,13 @@ gulp.task("server", shell.task([
 
 gulp.task("restart", shell.task([
     'nginx -s reload'
-]));
+], {verbose: true}));
 
 gulp.task("stop", shell.task([
+    'nginx -s stop'
+]));
+
+gulp.task("status", shell.task([
     'nginx -s stop'
 ]));
 
