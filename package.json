@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nginx -c ./nginx.conf -p ./",
+    "restart": "nginx -s reload",
+    "stop": "nginx -s stop",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -18,9 +22,12 @@
   "homepage": "https://github.com/danjres/3d#readme",
   "dependencies": {
     "gulp": "^3.9.0",
-    "n3d-threejs": "^72.0.0",
+    "lodash": "^4.17.4",
+    "n3d-threejs": "^76.0.0",
     "react": "^0.14.3",
-    "typescript": "^1.6.2"
+    "ts-loader": "^2.2.0",
+    "tslint": "^5.4.3",
+    "typescript": "^2.3.4"
   },
   "devDependencies": {
     "css-loader": "^0.23.0",
@@ -29,11 +36,13 @@
     "gulp-watch": "^4.3.5",
     "gulp-webpack": "^1.5.0",
     "jquery": "^2.1.4",
+    "json-loader": "^0.5.4",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
     "style-loader": "^0.13.0",
     "ts-loader": "^0.7.2",
     "tsd": "^0.6.5",
+    "tslint-config-standard": "^6.0.1",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   }
