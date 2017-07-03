@@ -6,8 +6,6 @@ import AudioPlayer from './audio';
 import Visualizer from './visualizer';
 import Loader from './loader';
 
-declare function require(path: string)
-
 interface ICameras{
   main:THREE.PerspectiveCamera;
 }
@@ -16,7 +14,9 @@ interface ILights{
   main:THREE.DirectionalLight;
 }
 
-require("css!../styles/index");
+declare function require(path: string)
+
+require("../styles/index.less");
 
 export default class App {
 

@@ -54,32 +54,30 @@ export default class Visualizer {
       shininess: 100,
     });
     let mesh = new THREE.Mesh(geometry, material);
-    this.meshes.push(mesh);
-    mesh.position.set(x / 2 + (0.1 * x), 0, 0);
-    this.container.add( mesh );
+    let group = new THREE.Group();
+    group.add(mesh)
+    this.meshes.push(group);
+    group.position.set(x / 2 + (0.1 * x), 0, 0);
+    this.container.add(group);
   }
 
   visualize(element:THREE.Object3D) {
 
     this.analyser.getByteFrequencyData(this.dataArray);
-
     let average = _.reduce(this.dataArray, (value, seed) => {
       return value + seed;
-    }, 0) / this.dataArray.length;
-
+    }, 0) / this.dataArray.length + 100;
     let range = this.analyser.maxDecibels - this.analyser.minDecibels;
-
     let percent = average / range;
-
     this.options.light.intensity = percent + .3;
 
     for(var i = 0; i < this.bufferLength; i++) {
-      let mesh = this.meshes[i];
+      let mesh = this.meshes[i].children[0];
       if (this.dataArray[i] !== 0) {
         mesh.scale.y = this.dataArray[i] / 10;
         mesh.geometry.computeBoundingBox();
         let height = mesh.geometry.boundingBox.size().y;
-        mesh.position.y = height * mesh.scale.y / 2 ;
+        mesh.position.y = height * mesh.scale.y / 2;
       }
     }
   }

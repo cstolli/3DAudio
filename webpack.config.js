@@ -3,7 +3,7 @@
 * @Date:   2015-11-27T19:28:20-08:00
 * @Email:  chrispstoll@gmail.com
 * @Last modified by:   chrisstoll
-* @Last modified time: 2017-07-02T12:25:55-07:00
+* @Last modified time: 2017-07-02T18:16:47-07:00
 * @License: MIT
 */
 
@@ -20,7 +20,7 @@ module.exports = {
   },
 	module: {
   	loaders: [
-      { test: /\.less/, loader: 'style!css!less' },
+      { test: /\.less/, loader: 'style!css!autoprefixer!less' },
       { test: /\.tsx/, loader: 'ts-loader' },
       { test: /\.json/, loader: 'json-loader' }
   	]

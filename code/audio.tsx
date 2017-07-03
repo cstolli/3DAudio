@@ -1,5 +1,5 @@
 import * as _ from 'lodash'
-import * as  noteFreqs from './note-frequencies'
+import noteFreqs from './note-frequencies'
 
 interface IAudioOptions {
     file: string,
@@ -121,20 +121,20 @@ export default class AudioPlayer {
 
     playSound(note):void {
 
-        let freq = noteFreqs[note];
-        let osc = this.oscillators[''+freq]
-        if (freq && !osc) {
-            var oscillator = this.context.createOscillator();
-            oscillator.type = 'triangle';
-            //sine
-            //square
-            //sawtooth
-            //triangle
-            oscillator.frequency.value = freq;
-            oscillator.connect(this.context.destination);
-            oscillator.start();
-            this.oscillators[freq+''] = oscillator;
-        }
+      let freq = noteFreqs[note];
+      let osc = this.oscillators[''+freq]
+      if (freq && !osc) {
+        var oscillator = this.context.createOscillator();
+        oscillator.type = 'sawtooth';
+        //sine
+        //square
+        //sawtooth
+        //triangle
+        oscillator.frequency.value = freq;
+        oscillator.connect(this.context.destination);
+        oscillator.start();
+        this.oscillators[freq+''] = oscillator;
+      }
     }
 
     stopSound(note):void {
