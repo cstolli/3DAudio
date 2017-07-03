@@ -61,7 +61,7 @@ export default class AudioPlayer {
 
         let play = document.createElement('button');
         play.className = 'play-button';
-        play.innerHTML = 'Play';
+        play.innerHTML = 'ROck ON BROuh';
 
         let stop = document.createElement('button');
         stop.innerHTML = 'Stop';

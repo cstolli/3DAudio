@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nginx -c ./nginx.conf -p ./",
+    "server": "nginx -c ${PWD}/nginx.conf -p ${PWD}",
     "restart": "nginx -s reload",
     "stop": "nginx -s stop",
     "build": "webpack"
@@ -21,29 +21,27 @@
   },
   "homepage": "https://github.com/danjres/3d#readme",
   "dependencies": {
-    "gulp": "^3.9.0",
     "lodash": "^4.17.4",
     "n3d-threejs": "^76.0.0",
     "react": "^0.14.3",
+    "three": "^0.86.0",
     "ts-loader": "^2.2.0",
     "tslint": "^5.4.3",
     "typescript": "^2.3.4"
   },
   "devDependencies": {
-    "css-loader": "^0.23.0",
-    "gulp-shell": "^0.5.1",
-    "gulp-typescript": "^2.9.2",
-    "gulp-watch": "^4.3.5",
-    "gulp-webpack": "^1.5.0",
+    "autoprefixer-loader": "^3.2.0",
+    "css-loader": "^0.23.1",
+    "file-loader": "github:webpack-contrib/file-loader",
     "jquery": "^2.1.4",
     "json-loader": "^0.5.4",
     "less": "^2.5.3",
-    "less-loader": "^2.2.2",
-    "style-loader": "^0.13.0",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.2",
     "ts-loader": "^0.7.2",
     "tsd": "^0.6.5",
     "tslint-config-standard": "^6.0.1",
-    "webpack": "^1.12.9",
+    "webpack": "^1.15.0",
     "webpack-dev-server": "^1.14.0"
   }
 }
