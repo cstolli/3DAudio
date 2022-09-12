@@ -1,5 +1,6 @@
 import * as _ from 'lodash'
 import * as THREE from 'three'
+import TextGeometry, { BMFont, BMFontJsonParser, TextGeometryOption, TextAlign } from 'three-text-geometry'
 
 interface IVisualizerOptions {
   analyser: AnalyserNode;
@@ -41,11 +42,14 @@ export default class Visualizer {
       this.drawFrequencyBar(x);
     }
     let box:any = new THREE.Box3().setFromObject(this.container);
-    this.container.position.x = -box.size().x / 2;
+    const size = new THREE.Vector3();
+    box.getSize(size)
+    this.container.position.x = -size.x / 2;
   }
 
   drawFrequencyBar(x) {
     let geometry = new THREE.CylinderGeometry(0.25, 0.25, 0.25, 20);
+    
     let material = new THREE.MeshPhongMaterial({
       color: 0x2194ce,
       specular: 0xffffff,
@@ -76,7 +80,9 @@ export default class Visualizer {
       if (this.dataArray[i] !== 0) {
         mesh.scale.y = this.dataArray[i] / 10;
         mesh.geometry.computeBoundingBox();
-        let height = mesh.geometry.boundingBox.size().y;
+        const size = new THREE.Vector3();
+        mesh.geometry.boundingBox.getSize(size);
+        let height = size.y;
         mesh.position.y = height * mesh.scale.y / 2;
       }
     }

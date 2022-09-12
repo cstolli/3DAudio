@@ -8,6 +8,7 @@
 */
 
 module.exports = {
+  mode: 'development',
   entry:  __dirname + '/code/index.tsx',
   output: {
     path: __dirname + '/dist',
@@ -15,14 +16,14 @@ module.exports = {
   },
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.ts', '.tsx', '.less', '.mp3', '.json'],
-    modulesDirectories: ['node_modules']
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.ts', '.tsx', '.less', '.mp3', '.json']
   },
 	module: {
-  	loaders: [
-      { test: /\.less/, loader: 'style!css!autoprefixer!less' },
-      { test: /\.tsx/, loader: 'ts-loader' },
-      { test: /\.json/, loader: 'json-loader' }
+  	rules: [
+      // { test: /\.less/, loader: 'style!css!autoprefixer!less' },
+      { test: /\.tsx/, use: 'ts-loader', exclude: /node_modules/},
+      { test: /\.json/, use: 'json-loader' }
+
   	]
 	}
 }

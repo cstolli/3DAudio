@@ -1,5 +1,5 @@
 import * as _ from 'lodash'
-import noteFreqs from './note-frequencies'
+import  noteFreqs from './note-frequencies'
 
 interface IAudioOptions {
     file: string,
@@ -41,6 +41,8 @@ export default class AudioPlayer {
 
     private controls:IAudioControls;
 
+    private synthType:string;
+
     constructor(options:IAudioOptions) {
 
         this.options = _.extend({
@@ -55,13 +57,37 @@ export default class AudioPlayer {
 
     }
 
+    createSynthTypeSelect () {
+      let type = document.createElement('select')
+      let saw = document.createElement('option')
+      saw.innerHTML = 'Saw'
+      let square = document.createElement('option')
+      square.innerHTML = 'Square'
+      let triangle = document.createElement('option')
+      triangle.innerHTML = 'Triangle'
+      let sine = document.createElement('option')
+      sine.innerHTML = 'Sine'
+      type.appendChild(saw)
+      type.appendChild(square)
+      type.appendChild(triangle)
+      type.appendChild(sine)
+      this.container.appendChild(type)
+      type.onchange = (event:HashChangeEvent) => {
+        const target: any = event.target
+        this.synthType = target.innerHTML.toLowerCase()
+      }
+    }
+
     createElements() {
         this.container = document.createElement('div');
         this.container.className = 'orchestra-pit';
 
         let play = document.createElement('button');
+
+        this.createSynthTypeSelect()
+
         play.className = 'play-button';
-        play.innerHTML = 'ROck ON BROuh';
+        play.innerHTML = 'PLAY';
 
         let stop = document.createElement('button');
         stop.innerHTML = 'Stop';
@@ -124,7 +150,7 @@ export default class AudioPlayer {
       let freq = noteFreqs[note];
       let osc = this.oscillators[''+freq]
       if (freq && !osc) {
-        var oscillator = this.context.createOscillator();
+        let oscillator = this.context.createOscillator();
         oscillator.type = 'sawtooth';
         //sine
         //square

@@ -14,9 +14,9 @@ interface ILights{
   main:THREE.DirectionalLight;
 }
 
-declare function require(path: string)
+// declare function require(path: string)
 
-require("../styles/index.less");
+// require("../styles/index.less");
 
 export default class App {
 
